@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Job;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+// use Illuminate\Support\Facades\Auth;
+
 
 class JobController extends Controller
+
 {
+
+    use AuthorizesRequests;
     // @desc show all job listing
     // @route Get /jobs
     public function index(): View
@@ -24,8 +29,12 @@ class JobController extends Controller
 
     // @desc show create job form
     // @route Get jobs/create
-    public function create(): View
+    public function create()
     {
+        // if (!Auth::check()) {
+        //     return redirect()->route('login');
+        // }
+
         return view('jobs.create');
     }
 
@@ -64,8 +73,8 @@ class JobController extends Controller
         //     'description' => $validatedData['description']
         // ]);
 
-        // Hardcoded user ID
-        $validatedData['user_id'] = 1;
+        // the code show warning but it is perfect fine this is because of IDE inteliphense
+        $validatedData['user_id'] = auth()->user()->id;
 
         // check for image
         if ($request->hasFile('company_logo')) {
@@ -94,13 +103,18 @@ class JobController extends Controller
     // @route Get /jobs/{$id}/edit/
     public function edit(Job $job): View
     {
+        // check if the user is authorized
+        $this->authorize('update', $job);
         return view('jobs.edit')->with('job', $job);
     }
 
     // @desc update job listing
     // @route PUT /jobs/{$id}
     public function update(Request $request, Job $job)
+
     {
+        // Check if user is authorized
+        $this->authorize('update', $job);
         $validatedData = $request->validate([
 
             'title' => 'required|string|max:255',
@@ -155,6 +169,7 @@ class JobController extends Controller
 
     public function destroy(Job $job): RedirectResponse
     {
+        $this->authorize('delete', $job);
         //if logo then delete it
         if ($job->company_logo) {
             Storage::delete('public/logos/' . $job->company_logo);
