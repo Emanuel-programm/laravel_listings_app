@@ -21,3 +21,5 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 
 // logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// this is sample git commit for version control
