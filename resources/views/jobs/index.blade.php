@@ -10,6 +10,9 @@
 
     </div>
 
+    {{-- pagination links --}}
+{{ $jobs->links() }}
+
 
 
 </x-layout>
