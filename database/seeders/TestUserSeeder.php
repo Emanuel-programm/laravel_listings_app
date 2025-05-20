@@ -7,15 +7,16 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Carbon\Carbon;
+use Mockery\Matcher\Any;
 
 class TestUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): Any
     {
-        User::create([
+        $user = User::create([
 
             'name' => 'Test user',
             'email' => 'test@test.com',
@@ -23,5 +24,6 @@ class TestUserSeeder extends Seeder
             'password' => Hash::make('12345678')
 
         ]);
+        return $user;
     }
 }
