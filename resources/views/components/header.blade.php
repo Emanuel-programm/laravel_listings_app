@@ -15,7 +15,7 @@
         <x-nav-link url="/jobs" :active="request()->is('/jobs')">All Jobs</x-nav-link>
         @auth
 
-        <x-nav-link url="/jobs/saved" :active="request()->is('/jobs/saved')">Jobs saved </x-nav-link>
+        <x-nav-link url="/bookmarks" :active="request()->is('/bookmarks')">Jobs saved </x-nav-link>
 
 
         <x-logout-button/>
@@ -55,7 +55,7 @@
       @auth
 
      
-      <x-nav-link  url='/jobs/saved'  :active="request()->is('jobs/saved')" :mobile="true">Saved Jobs </x-nav-link>
+      <x-nav-link  url='/bookmarks'  :active="request()->is('bookmarks')" :mobile="true">Saved Jobs </x-nav-link>
       <x-nav-link  url='/dashboard'  :active="request()->is('dashboard')" :mobile="true">Dashboard </x-nav-link>
       <x-logout-button/>
       <div class="p-2"></div>
