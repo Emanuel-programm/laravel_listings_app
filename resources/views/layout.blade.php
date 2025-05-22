@@ -8,7 +8,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     @vite('resources/css/app.css')
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+ <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     
     <title>{{$title ?? 'Workopia | Find and list jobs'}}</title>
 </head>
