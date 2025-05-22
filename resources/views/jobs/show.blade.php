@@ -101,21 +101,21 @@
                         and attach your resume.
                     </p>
 
-               <div x-data="{open:false}" x-cloak>
+               <div x-data="{open:false}" >
                <button @click="open=true"  class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
             Apply Now
                 </button>
-            <div  x-show="open"  class="fixed inset-0 flex items-center p-4 justify-center bg-gray-500 bg-opacity-50">
+            <div x-cloak  x-show="open"  class="fixed inset-0 flex items-center p-4 justify-center bg-gray-500 bg-opacity-50">
                <div @click.away="open=false" class="bg-white p-6 max-h-[100vh] overflow-y-auto  rounded-lg shadow-md w-full max-w-md">
                 <h3 class="text-lg font-semibold mb-4">
                     Apply for {{ $job->title }}
                 </h3>
-                <form action="" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('applicant.store',$job->id )}}" enctype="multipart/form-data">
                 @csrf
                 <x-inputs.text id="full_name" :required="true" name="full_name" label="Full name"/>
                 <x-inputs.text id="contact_phone" :required="true" name="contact_phone" label="Contact phone"/>
                 <x-inputs.text id="contact_email" :required="true" name="contact_email" label="Contact Email"/>
-                <x-inputs.text-area id="message"  name="message" label="Email"/>
+                <x-inputs.text-area id="message"  name="message" label="Message"/>
                 <x-inputs.text id="location"  name="location" label="Location"/>
                 <x-inputs.file id="resume" name="resume" label="Upload Your Resume: (.pdf)" :required="true"  />
 
