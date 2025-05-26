@@ -44,7 +44,7 @@
 
         <x-inputs.text id="address" name="address" :value="old('address',$job->address)" label="Address" placeholder="123 Mani st"  />
 
-        <x-inputs.text id="city" name="city" :value="old('tags',$job->tags)" label="City" placeholder="Albany"  />
+        <x-inputs.text id="city" name="city" :value="old('city',$job->city)" label="City" placeholder="Albany"  />
 
         <x-inputs.text id="state" name="state" :value="old('state',$job->state)" label="State" placeholder="NY"  />
 
